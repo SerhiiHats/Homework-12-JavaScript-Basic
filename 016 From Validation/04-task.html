@@ -50,6 +50,12 @@
         .form-group input {
             width: 200px;
         }
+        div>input:invalid{
+            border: 1px solid red;
+        }
+        div>input:valid{
+            border: 1px solid green;
+        }
     </style>
 </head>
 
@@ -60,27 +66,27 @@
     <form id="output">
         <div class="form-group">
             <label for="firstName">Имя</label>
-            <input type="text" name="firstName" id="firstName">
+            <input type="text" name="firstName" id="firstName" required> 
         </div>
         <div class="form-group">
             <label for="lastName">Фамилия</label>
-            <input type="text" name="lastName" id="lastName">
+            <input type="text" name="lastName" id="lastName" required>
         </div>
         <div class="form-group">
             <label for="companyName">Компания</label>
-            <input type="text" name="companyName" id="companyName">
+            <input type="text" name="companyName" id="companyName" required>
         </div>
         <div class="form-group">
             <label for="balance">Баланс</label>
-            <input type="number" name="balance" id="balance">
+            <input type="text" name="balance" id="balance" pattern="\d{4,}\.?\d?\d?" min="1000" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+            <input type="email" name="email" id="email" required>
         </div>
         <div class="form-group">
-            <label for="age">Возраст</label>
-            <input type="number" name="age" id="age">
+            <label for="age" required>Возраст</label>
+            <input type="number" name="age" id="age" min="18" required>
         </div>
         <input type="button" value="Save" id="saveButton">
         <input type="reset" value="Reset">
