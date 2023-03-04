@@ -28,6 +28,11 @@
         input:invalid {
             border: 1px solid red;
         }
+
+        #error {
+            display: none;
+            color: red;
+        }
     </style>
 </head>
 
@@ -44,6 +49,8 @@
         <div class="form-group">
             <label>Email</label>
             <input type="email" name="emailInput" required>
+            <span id="error"></span>
+
         </div>
         <div class="form-group">
             <label>Пароль</label>
@@ -74,13 +81,13 @@
             if (form.passwordConfirmInput.value != form.passwordInput.value) {
                 form.passwordConfirmInput.setCustomValidity("Пароль и подтверждение пароля не совпадают.");
                 form.passwordInput.setCustomValidity("Пароль и подтверждение пароля не совпадают.");
-            }
-            else {
-                form.passwordConfirmInput.setCustomValidity(""); 
+
+            } else {
+                form.passwordConfirmInput.setCustomValidity("");
                 form.passwordInput.setCustomValidity("");
+
             }
         });
-
         /*
         Задание:
         Доработайте валидацию формы. Поле ввода Email не должно содержать значения
@@ -89,6 +96,22 @@
         значение совпадает с запрещенным, выводите сообщение об этом рядом с полем ввода.
         Проверку выполняйте на событие input
         */
+
+        let setBan = new Set(["admin@example.com", "superuser@example.com", "user@example.com"]);        
+        const elemError = document.querySelector("#error");
+
+        form.emailInput.addEventListener("input", () => {
+            if (setBan.has(form.emailInput.value)) {
+                form.emailInput.setCustomValidity(
+                    `Поле ввода Email не должно содержать значения ${form.emailInput.value}`);
+
+                elemError.textContent = ` недопустимое имя Email:${form.emailInput.value}`;
+                elemError.style.display = "unset";
+            } else {
+                form.emailInput.setCustomValidity("");
+                elemError.style.display = "none";
+            }
+        })
     </script>
 </body>
 
