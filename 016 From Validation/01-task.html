@@ -14,6 +14,13 @@
         .form-group label {
             width: 75px;
             display: inline-block;
+            /* bagruond */
+            /* background: ; */
+        }
+
+        #loginHint,
+        #passwordHint {
+            display: none;
         }
     </style>
 </head>
@@ -43,6 +50,19 @@
         2. В момент, когда поле ввода login получает фокус, покажите подсказку, которая находится в span#loginHint
            В момент, когда фокус получает поле ввода password - подсказку span#passwordHint
         */
+        const form = document.forms[0];
+
+        form.addEventListener("submit", () => {
+            alert(`login: ${form.elements.login.value} \npassword: ${form.elements.password.value}`);
+        });
+
+        form.elements.login.addEventListener("focus", () => {
+            document.querySelector("#loginHint").style.display = "unset";
+        });
+
+        form.elements.password.addEventListener("focus", () => {
+            document.querySelector("#passwordHint").style.display = "unset";
+        })
     </script>
 </body>
 
